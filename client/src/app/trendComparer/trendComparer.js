@@ -25,7 +25,7 @@ angular.module('lt.trendComparer', [
 				'rgba(66,139,202,o)','rgba(92,184,92,o)','rgba(240,173,78,o)',
 				'rgba(255,102,51,o)','rgba(57,114,73,o)','rgba(243,213,189,o)',
 				'rgba(43,187,216,o)','rgba(144,202,119,o)',
-				'rgba(192, 192, 192, o)'
+				'rgba(192,192,192,o)'
 			];
 
 			// default to last 10 weeks

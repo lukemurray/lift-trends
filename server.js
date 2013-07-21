@@ -3,9 +3,22 @@ var fs = require('fs');
 
 var app = express();
 
-app.use(express.bodyParser());
+var staticMiddleware;
+var buildDir;
 
-var staticMiddleware = express.static(__dirname + '/client/build');
+app.configure('development', function(){
+	buildDir = '/client/build';
+	staticMiddleware = express.static(__dirname + buildDir);
+	console.log('Configured server for DEV mode');
+});
+
+app.configure('production', function() {
+	buildDir = '/client/bin';
+	var staticMiddleware = express.static(__dirname + buildDir);
+	console.log('Configured server for PROD mode');
+});
+
+app.use(express.bodyParser());
 app.use(staticMiddleware);
 
 app.use(function(err, req, res, next) {
@@ -13,9 +26,8 @@ app.use(function(err, req, res, next) {
 });
 
 app.get('/', function(req, res) {
-    fs.readFile(__dirname + '/client/build/index.html', 'utf8', function(err, text) {
+    fs.readFile(__dirname + buildDir + '/index.html', 'utf8', function(err, text) {
     	if (err) {
-			console.log('poo');
 			res.send(500, 'Could not find index.html!');
 		}
 		else {

@@ -5,7 +5,7 @@ var app = express();
 
 app.use(express.bodyParser());
 
-var staticMiddleware = express.static(__dirname + '/../client/build');
+var staticMiddleware = express.static(__dirname + '/client/build');
 app.use(staticMiddleware);
 
 app.use(function(err, req, res, next) {
@@ -13,7 +13,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.get('/', function(req, res) {
-    fs.readFile(__dirname + '/../client/build/index.html', 'utf8', function(err, text) {
+    fs.readFile(__dirname + '/client/build/index.html', 'utf8', function(err, text) {
     	if (err) {
 			console.log('poo');
 			res.send(500, 'Could not find index.html!');

@@ -38,7 +38,33 @@ angular.module('lt.trendComparer', [
 			];
 			$scope.goBack = $scope.goBackOptions[1];
 
+			function setupDataForRange(habit) {
+				var data = [];
+				angular.forEach(datesShowing, function(d, idx) {
+					data.push(0);
+					angular.forEach(habit.checkIns, function(checkin) {
+						var cDate = new Date(checkin.date);
+						if (cDate >= d && cDate < new Date(d.getTime() + 7*24*60*60*1000)) {
+							data[idx] += 1;
+						}
+					});
+				});
+				var rgba = habit.color.replace('o', '0.5');
+				var rgb = habit.color.replace('o', '1');
+
+				$scope.datasets.push({
+					fillColor : rgba,
+					strokeColor : rgb,
+					pointrgb : rgb,
+					pointStrokeColor : "#fff",
+					data : data,
+					habitName: habit.name
+				});
+			}
+
 			$scope.setupRange = function() {
+				datesShowing = [];
+				$scope.datasets = [];
 				// default to last 10 weeks
 				var now = new Date();
 				now.setHours(0);
@@ -61,6 +87,12 @@ angular.module('lt.trendComparer', [
 					lbls.push(lbl);
 				}
 				$scope.labels = lbls;
+
+				angular.forEach($scope.habits, function(habit) {
+					if (habit.selected) {
+						setupDataForRange(habit);
+					}
+				});
 			};
 
 			$scope.getBackground = function(alpha, $index) {
@@ -69,31 +101,12 @@ angular.module('lt.trendComparer', [
 
 			$scope.selectHabit = function($event, habit, $index) {
 				var checkbox = $event.target;
-				var color = uniqueColors[$index % uniqueColors.length];
+				habit.color = uniqueColors[$index % uniqueColors.length];
+				habit.selected = checkbox.checked;
 
 				if (checkbox.checked) {
 					// go through checkIns and see if any hits our range
-					var data = [];
-					angular.forEach(datesShowing, function(d, idx) {
-						data.push(0);
-						angular.forEach(habit.checkIns, function(checkin) {
-							var cDate = new Date(checkin.date);
-							if (cDate >= d && cDate < new Date(d.getTime() + 7*24*60*60*1000)) {
-								data[idx] += 1;
-							}
-						});
-					});
-					var rgba = color.replace('o', '0.5');
-					var rgb = color.replace('o', '1');
-
-					$scope.datasets.push({
-						fillColor : rgba,
-						strokeColor : rgb,
-						pointrgb : rgb,
-						pointStrokeColor : "#fff",
-						data : data,
-						habitName: habit.name
-					});
+					setupDataForRange(habit);
 				}
 				else {
 					var newSet = [];

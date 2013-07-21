@@ -13,8 +13,7 @@ angular.module('common.chart', [])
 		templateUrl: 'chart/chart.tpl.html',
 		scope: {
 			labels: '=',
-			datasets: '=',
-			height: '@'
+			datasets: '='
 		},
 		controller: function($scope) {
 

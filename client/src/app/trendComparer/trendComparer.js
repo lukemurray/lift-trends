@@ -7,6 +7,12 @@ angular.module('lt.trendComparer', [
 		'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
 		'Jul', 'Aug', 'Sep', 'Oct', 'Nov' ,'Dec'
 	];
+	var uniqueColors = [
+		'rgba(66,139,202,o)','rgba(92,184,92,o)','rgba(240,173,78,o)',
+		'rgba(255,102,51,o)','rgba(57,114,73,o)','rgba(243,213,189,o)',
+		'rgba(43,187,216,o)','rgba(144,202,119,o)',
+		'rgba(192,192,192,o)'
+	];
 	
 	return {
 		restrict: 'E',
@@ -20,13 +26,6 @@ angular.module('lt.trendComparer', [
 
 			$scope.labels = [];
 			$scope.datasets = [];
-
-			$scope.uniqueColors = [
-				'rgba(66,139,202,o)','rgba(92,184,92,o)','rgba(240,173,78,o)',
-				'rgba(255,102,51,o)','rgba(57,114,73,o)','rgba(243,213,189,o)',
-				'rgba(43,187,216,o)','rgba(144,202,119,o)',
-				'rgba(192,192,192,o)'
-			];
 
 			// default to last 10 weeks
 			var now = new Date();
@@ -44,8 +43,14 @@ angular.module('lt.trendComparer', [
 				$scope.labels.push(months[d.getMonth()] + '/' + d.getDate());
 			}
 
-			$scope.selectHabit = function($event, habit, color) {
+			$scope.getBackground = function(alpha, $index) {
+				return uniqueColors[$index % uniqueColors.length].replace('o', alpha);
+			};
+
+			$scope.selectHabit = function($event, habit, $index) {
 				var checkbox = $event.target;
+				var color = uniqueColors[$index % uniqueColors.length];
+
 				if (checkbox.checked) {
 					// go through checkIns and see if any hits our range
 					var data = [];

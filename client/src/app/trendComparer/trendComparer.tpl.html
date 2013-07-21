@@ -1,14 +1,14 @@
 <div class="row">
-	<div class="col-3" style="height: {{height}}px;">
+	<div class="col-3">
 		<h3>Habits</h3>
-		<div ng-repeat="habit in habits" style="background-color: {{ uniqueColors[$index % uniqueColors.length].replace('o', 0.5) }}; border: solid 1px {{ uniqueColors[$index % uniqueColors.length].replace('o', 1) }};">
+		<div ng-repeat="habit in habits" style="background-color: {{ getBackground(0.5, $index) }}; border: solid 1px {{ getBackground(1, $index) }};">
 			<label class="checkbox habitLabel">
-				<input type="checkbox" ng-click="selectHabit($event, habit, uniqueColors[$index % habits.length])" id="{{ habit.name }}" /> {{ habit.name }}
+				<input type="checkbox" ng-click="selectHabit($event, habit, $index)" id="{{ habit.name }}" /> {{ habit.name }}
 			</label>
 		</div>
 	</div>
-	<div class="col-9">
+	<div class="col-9 full">
 		<h3>Last 10 Weeks</h3>
-		<line-chart class="chart" labels="labels" datasets="datasets" height="height"></line-chart>		
+		<line-chart class="chart" labels="labels" datasets="datasets"></line-chart>		
 	</div>
 </div>

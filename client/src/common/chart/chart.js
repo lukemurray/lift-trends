@@ -3,15 +3,6 @@ angular.module('common.chart', [])
 .directive('lineChart', function() {
 	var chart;
 	var data = { labels: null, datasets: null };
-	var options = {
-		scaleOverlay: true,
-		scaleOverride: true,
-		scaleSteps: 7,
-		scaleStepWidth: 1,
-		scaleStartValue: 0,
-		datasetStrokeWidth: 1,
-		animationSteps: 40
-	};
 	
 	return {
 		restrict: 'EA',
@@ -19,7 +10,8 @@ angular.module('common.chart', [])
 		templateUrl: 'chart/chart.tpl.html',
 		scope: {
 			labels: '=',
-			datasets: '='
+			datasets: '=',
+			chartOptions: '='
 		},
 		controller: function($scope) {
 
@@ -31,22 +23,22 @@ angular.module('common.chart', [])
 
 			scope.$watch('labels.length', function(n) {
 				data.labels = scope.labels;
-				chart.Line(data, options);
+				chart.Line(data, scope.chartOptions);
 			});
 
 			scope.$watch('datasets.length', function(n) {
 				data.datasets = scope.datasets;
-				chart.Line(data, options);
+				chart.Line(data, scope.chartOptions);
 			});
 
 			scope.$watch('labels', function(n) {
 				data.labels = n;
-				chart.Line(data, options);
+				chart.Line(data, scope.chartOptions);
 			});
 
 			scope.$watch('datasets', function(n) {
 				data.datasets = n;
-				chart.Line(data, options);
+				chart.Line(data, scope.chartOptions);
 			});
 		}
 	};

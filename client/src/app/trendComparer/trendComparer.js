@@ -31,12 +31,20 @@ angular.module('lt.trendComparer', [
 				{ name: '5 weeks', id: 0, groupMonth: false, value: 5 },
 				{ name: '10 weeks', id: 1, groupMonth: false, value: 10 },
 				{ name: '15 weeks', id: 2, groupMonth: false, value: 15 },
-				{ name: '3 months', id: 3, groupMonth: true, value: 3 },
 				{ name: '6 months', id: 4, groupMonth: true, value: 6 },
 				{ name: '9 months', id: 5, groupMonth: true, value: 9 },
 				{ name: '1 year', id: 6, groupMonth: true, value: 12 }
 			];
 			$scope.goBack = $scope.goBackOptions[1];
+			$scope.chartOptions = {
+				scaleOverlay: true,
+				scaleOverride: true,
+				scaleSteps: 7,
+				scaleStepWidth: 1,
+				scaleStartValue: 0,
+				datasetStrokeWidth: 1,
+				animationSteps: 40
+			};
 
 			function setupDataForRange(habit) {
 				var data = [];
@@ -44,8 +52,15 @@ angular.module('lt.trendComparer', [
 					data.push(0);
 					angular.forEach(habit.checkIns, function(checkin) {
 						var cDate = new Date(checkin.date);
-						if (cDate >= d && cDate < new Date(d.getTime() + 7*24*60*60*1000)) {
+						var next = new Date(d);
+						if (!$scope.goBack.groupMonth && cDate >= d && cDate < new Date(d.getTime() + 7*24*60*60*1000)) {
 							data[idx] += 1;
+						}
+						else if ($scope.goBack.groupMonth) {
+							next.setMonth(next.getMonth() + 1);
+							if (cDate >= d && cDate < next) {
+								data[idx] += 1;
+							}
 						}
 					});
 				});
@@ -71,20 +86,37 @@ angular.module('lt.trendComparer', [
 				now.setMinutes(0);
 				now.setSeconds(0);
 				var day = now.getDay();
-				if (day > 0) {
-					diff = now.getDate() - day; // adjust when day is sunday
+				if (day > 0 && !$scope.goBack.groupMonth) {
+					// get the sunday - start of week
+					diff = now.getDate() - day;
 					now = new Date(now.setDate(diff));				
+				}
+				if ($scope.goBack.groupMonth) {
+					now.setDate(1); // 1st of month
 				}
 
 				var lbls =[];
-				for (var i = $scope.goBack.value - 1; i >= 0; i--) {
-					var d = new Date(now.getTime()- ( (7 * i) *24*60*60*1000));
-					datesShowing.push(d);
-					var lbl = months[d.getMonth()];
-					if (!$scope.goBack.groupMonth) {
-						lbl = lbl + '/' + d.getDate();
+				if (!$scope.goBack.groupMonth) {
+					$scope.chartOptions.scaleSteps = 7;
+					for (var i = $scope.goBack.value - 1; i >= 0; i--) {
+						var d = new Date(now.getTime()- ( (7 * i) *24*60*60*1000));
+						datesShowing.push(d);
+						var lbl = months[d.getMonth()];
+						if (!$scope.goBack.groupMonth) {
+							lbl = lbl + '/' + d.getDate();
+						}
+						lbls.push(lbl);
 					}
-					lbls.push(lbl);
+				}
+				else if ($scope.goBack.groupMonth) {
+					$scope.chartOptions.scaleSteps = 31;
+					for (var j = $scope.goBack.value - 1; j >= 0; j--) {
+						var dd = new Date(now);
+						dd.setMonth(dd.getMonth() - j);
+						datesShowing.push(dd);
+						var lbl2 = months[dd.getMonth()];
+						lbls.push(lbl2);
+					}
 				}
 				$scope.labels = lbls;
 

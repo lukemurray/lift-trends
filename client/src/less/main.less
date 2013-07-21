@@ -1,0 +1,89 @@
+@import "variables.less";
+
+/**
+ * Just import the bootstrap files we use
+ */
+
+// Core variables and mixins
+@import "../../vendor/bootstrap/less/mixins.less";
+
+// Reset
+@import "../../vendor/bootstrap/less/normalize.less";
+//@import "print.less";
+
+// Core CSS
+@import "../../vendor/bootstrap/less/scaffolding.less";
+@import "../../vendor/bootstrap/less/type.less";
+//@import "code.less";
+@import "../../vendor/bootstrap/less/grid.less";
+
+//@import "tables.less";
+@import "../../vendor/bootstrap/less/forms.less";
+@import "../../vendor/bootstrap/less/buttons.less";
+
+// Components: common
+//@import "component-animations.less";
+@import "../../vendor/bootstrap/less/dropdowns.less";
+@import "../../vendor/bootstrap/less/list-group.less";
+//@import "../../vendor/bootstrap/less/panels.less";
+//@import "../../vendor/bootstrap/less/wells.less";
+//@import "close.less";
+
+// Components: Nav
+@import "../../vendor/bootstrap/less/navs.less";
+@import "../../vendor/bootstrap/less/navbar.less";
+@import "../../vendor/bootstrap/less/button-groups.less";
+//@import "breadcrumbs.less";
+//@import "pagination.less";
+//@import "pager.less";
+
+// Components: Popovers
+//@import "modals.less";
+//@import "tooltip.less";
+//@import "../../vendor/bootstrap/less/popovers.less";
+
+// Components: Misc
+//@import "alerts.less";
+//@import "thumbnails.less";
+//@import "media.less";
+//@import "labels.less";
+//@import "badges.less";
+//@import "progress-bars.less";
+//@import "accordion.less";
+//@import "carousel.less";
+//@import "jumbotron.less";
+
+// Utility classes
+@import "../../vendor/bootstrap/less/utilities.less"; // Has to be last to override when necessary
+@import "../../vendor/bootstrap/less/responsive-utilities.less";
+
+
+/**
+ * Our application-wide LESS classes
+ */
+
+
+/**
+ * Typography
+ */
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(fonts/Roboto-Regular.woff) format('woff');
+}
+
+h2 {
+  margin: 20px 0;
+  color: #666;
+}
+
+
+/**
+ * Inlcude any LESS for different pages / controls etc from our app
+ */
+
+@import '../app/home/home.less';
+@import '../app/trendComparer/trendComparer.less';
+

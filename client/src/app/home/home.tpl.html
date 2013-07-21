@@ -1,0 +1,12 @@
+<div>
+	<div>
+		<h1>Lift Trend</h1>
+		<h2>Find relationships between your Lift.do trends</h2>
+	</div>
+	<form ng-upload id="fileUpload" action="/upload">
+		<input type="file" name="file" />
+		<input class="btn btn-primary" upload-submit="uploadComplete(content, completed)" type="submit" value="Upload" />
+	</form>
+	<trend-comparer class="comparer" habits="habits" height="400"></trend-comparer>
+</div>
+

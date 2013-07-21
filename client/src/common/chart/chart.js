@@ -4,6 +4,12 @@ angular.module('common.chart', [])
 	var chart;
 	var data = { labels: null, datasets: null };
 	var options = {
+		scaleOverlay: true,
+		scaleOverride: true,
+		scaleSteps: 7,
+		scaleStepWidth: 1,
+		scaleStartValue: 0,
+		datasetStrokeWidth: 1,
 		animationSteps: 40
 	};
 	

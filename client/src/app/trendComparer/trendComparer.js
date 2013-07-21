@@ -9,8 +9,9 @@ angular.module('lt.trendComparer', [
 	];
 	var uniqueColors = [
 		'rgba(66,139,202,o)','rgba(92,184,92,o)','rgba(240,173,78,o)',
-		'rgba(255,102,51,o)','rgba(57,114,73,o)','rgba(243,213,189,o)',
-		'rgba(43,187,216,o)','rgba(144,202,119,o)',
+		'rgba(255,102,51,o)','rgba(144,97,194,o)','rgba(145,121,93,o)',
+		'rgba(43,187,216,o)','rgba(243,213,189,o)',
+		'rgba(144,202,119,o)','rgba(57,114,73,o)',
 		'rgba(192,192,192,o)'
 	];
 	
@@ -26,22 +27,41 @@ angular.module('lt.trendComparer', [
 
 			$scope.labels = [];
 			$scope.datasets = [];
+			$scope.goBackOptions = [
+				{ name: '5 weeks', id: 0, groupMonth: false, value: 5 },
+				{ name: '10 weeks', id: 1, groupMonth: false, value: 10 },
+				{ name: '15 weeks', id: 2, groupMonth: false, value: 15 },
+				{ name: '3 months', id: 3, groupMonth: true, value: 3 },
+				{ name: '6 months', id: 4, groupMonth: true, value: 6 },
+				{ name: '9 months', id: 5, groupMonth: true, value: 9 },
+				{ name: '1 year', id: 6, groupMonth: true, value: 12 }
+			];
+			$scope.goBack = $scope.goBackOptions[1];
 
-			// default to last 10 weeks
-			var now = new Date();
-			now.setHours(0);
-			now.setMinutes(0);
-			var day = now.getDay();
-			if (day > 0) {
-				diff = now.getDate() - day; // adjust when day is sunday
-				now = new Date(now.setDate(diff));				
-			}
+			$scope.setupRange = function() {
+				// default to last 10 weeks
+				var now = new Date();
+				now.setHours(0);
+				now.setMinutes(0);
+				now.setSeconds(0);
+				var day = now.getDay();
+				if (day > 0) {
+					diff = now.getDate() - day; // adjust when day is sunday
+					now = new Date(now.setDate(diff));				
+				}
 
-			for (var i = 9; i >= 0; i--) {
-				var d = new Date(now.getTime()- ( (7 * i) *24*60*60*1000));
-				datesShowing.push(d);
-				$scope.labels.push(months[d.getMonth()] + '/' + d.getDate());
-			}
+				var lbls =[];
+				for (var i = $scope.goBack.value - 1; i >= 0; i--) {
+					var d = new Date(now.getTime()- ( (7 * i) *24*60*60*1000));
+					datesShowing.push(d);
+					var lbl = months[d.getMonth()];
+					if (!$scope.goBack.groupMonth) {
+						lbl = lbl + '/' + d.getDate();
+					}
+					lbls.push(lbl);
+				}
+				$scope.labels = lbls;
+			};
 
 			$scope.getBackground = function(alpha, $index) {
 				return uniqueColors[$index % uniqueColors.length].replace('o', alpha);
@@ -85,6 +105,8 @@ angular.module('lt.trendComparer', [
 					$scope.datasets = newSet;
 				}
 			};
+
+			$scope.setupRange();
 		},
 		link: function(scope, element, attrs) {
 

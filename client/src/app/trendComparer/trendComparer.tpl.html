@@ -8,7 +8,14 @@
 		</div>
 	</div>
 	<div class="col-9 full">
-		<h3>Last 10 Weeks</h3>
+		<div class="row">
+			<div class="col-9">
+				<h3>Last 10 Weeks</h3>
+			</div>
+			<div class="col-3">
+				Previous <select ng-model="goBack" ng-options="o.name for o in goBackOptions" ng-change="setupRange()"></select>
+			</div>
+		</div>
 		<line-chart class="chart" labels="labels" datasets="datasets"></line-chart>		
 	</div>
 </div>

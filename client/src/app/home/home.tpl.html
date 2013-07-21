@@ -1,12 +1,16 @@
 <div>
-	<div>
-		<h1>Lift Trend</h1>
-		<h2>Find relationships between your Lift.do trends</h2>
+	<div class="hero">
+		<div class="container">
+			<h1>Lift Trend</h1>
+			<h2>Find relationships between your Lift.do trends</h2>
+		</div>
 	</div>
-	<form ng-upload id="fileUpload" action="/upload">
-		<input type="file" name="file" />
-		<input class="btn btn-primary" upload-submit="uploadComplete(content, completed)" type="submit" value="Upload" />
-	</form>
-	<trend-comparer class="comparer" habits="habits"></trend-comparer>
+	<div class="container">
+		<form ng-upload id="fileUpload" action="/upload">
+			<input type="file" name="file" />
+			<input class="btn btn-primary" upload-submit="uploadComplete(content, completed)" type="submit" value="Upload" />
+		</form>
+		<trend-comparer class="comparer" habits="habits"></trend-comparer>
+	</div>
 </div>
 

@@ -1,3 +1,26 @@
+@color-on-hero: #dadada;
+@padding: 30px;
+
 .comparer {
 	min-height: 400px;
+}
+
+.hero {
+	background-color: rgba(82,131,92,1);
+	padding-top: @padding;
+	padding-bottom: @padding;
+	margin-bottom: 30px;
+	color: @color-on-hero;
+
+	h1 {
+		color: @color-on-hero;
+	}
+
+	h2 {
+		color: darken(@color-on-hero, 15%);
+	}
+
+	h3 {
+		color: darken(@color-on-hero, 15%);
+	}
 }

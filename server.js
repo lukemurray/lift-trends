@@ -14,7 +14,7 @@ app.configure('development', function(){
 
 app.configure('production', function() {
 	buildDir = '/client/bin';
-	var staticMiddleware = express.static(__dirname + buildDir);
+	staticMiddleware = express.static(__dirname + buildDir);
 	console.log('Configured server for PROD mode');
 });
 

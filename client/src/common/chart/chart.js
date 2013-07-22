@@ -18,7 +18,7 @@ angular.module('common.chart', [])
 		},
 		link: function(scope, element, attrs) {
 			
-			var ctx = element.find('canvas')[0].getContext('2d');
+			var ctx = element[0].getContext('2d');
 			chart = new Chart(ctx);
 
 			scope.$watch('labels.length', function(n) {

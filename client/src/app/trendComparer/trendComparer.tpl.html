@@ -1,7 +1,8 @@
 <div class="row">
 	<div class="col-3">
 		<h3>Habits</h3>
-		<div ng-repeat="habit in habits" style="background-color: {{ getBackground(0.5, $index) }}; border: solid 1px {{ getBackground(1, $index) }};">
+		<div ng-repeat="habit in habits">
+			<div class="legend" style="background-color: {{ getBackground(0.5, $index) }}; border: solid 1px {{ getBackground(1, $index) }};"></div>
 			<label class="checkbox habitLabel">
 				<input type="checkbox" ng-click="selectHabit($event, habit, $index)" id="{{ habit.name }}" /> {{ habit.name }}
 			</label>
@@ -9,13 +10,16 @@
 	</div>
 	<div class="col-9 full">
 		<div class="row">
-			<div class="col-9">
+			<div class="col-8">
 				<h3>Last 10 Weeks</h3>
 			</div>
-			<div class="col-3">
-				Previous <select ng-model="goBack" ng-options="o.name for o in goBackOptions" ng-change="setupRange()"></select>
+			<div class="col-2 periodLabel">
+				<strong class="pull-right">Show prevoius</strong>
+			</div>
+			<div class="col-2">
+				<select ng-model="goBack" ng-options="o.name for o in goBackOptions" ng-change="setupRange()"></select>
 			</div>
 		</div>
-		<line-chart class="chart" labels="labels" datasets="datasets" chart-options="chartOptions"></line-chart>		
+		<line-chart class="chart" width="800" height="450" labels="labels" datasets="datasets" chart-options="chartOptions"></line-chart>		
 	</div>
 </div>

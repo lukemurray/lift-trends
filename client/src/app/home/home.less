@@ -1,26 +1,35 @@
-@color-on-hero: #dadada;
+@color-on-hero: #494949;
 @padding: 20px;
+@background-height: 1427px 252px;
 
 .comparer {
 	min-height: 400px;
 }
 
 .hero {
-	background-color: rgba(82,131,92,1);
+	background: url('./title@2x.png') no-repeat;
+	background-position-x: center;
+	background-position-y: -30px;
+	-webkit-background-size: @background-height;
+	-moz-background-size: @background-height;
+	-o-background-size: @background-height;
+	background-size: @background-height;
 	padding-top: @padding;
 	padding-bottom: @padding;
 	margin-bottom: 30px;
 	color: @color-on-hero;
+
+	height: 222px;
 
 	h1 {
 		color: @color-on-hero;
 	}
 
 	h2 {
-		color: darken(@color-on-hero, 15%);
+		color: lighten(@color-on-hero, 15%);
 	}
 
 	h3 {
-		color: darken(@color-on-hero, 15%);
+		color: lighten(@color-on-hero, 15%);
 	}
 }

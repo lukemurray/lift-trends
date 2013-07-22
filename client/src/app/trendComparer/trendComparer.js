@@ -151,6 +151,10 @@ angular.module('lt.trendComparer', [
 				}
 			};
 
+			$scope.$watch('habits', function() {
+				$scope.datasets = [];
+			});
+
 			$scope.setupRange();
 		},
 		link: function(scope, element, attrs) {

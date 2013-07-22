@@ -54,7 +54,12 @@ app.post('/upload', function(req, res) {
 
 		// read data into json
 		fs.readFile(file.path, 'utf8', function(err, data) {
-			if (err) throw err;
+			if (err) {
+				fs.unlink(file.path, function(err) {
+					if (err) throw err;
+				});
+				throw err;
+			}
 
 			var lines = data.split(/\n/);
 
@@ -75,6 +80,9 @@ app.post('/upload', function(req, res) {
 				obj.habits.push({ name: h, checkIns: habits[h] });
 			}
 
+			fs.unlink(file.path, function(err) {
+				if (err) throw err;
+			});
 			res.send(JSON.stringify(obj));
 		});
 	}

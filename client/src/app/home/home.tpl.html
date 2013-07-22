@@ -7,7 +7,7 @@
 	</div>
 	<div class="container">
 		<form ng-upload id="fileUpload" action="/upload">
-			<input type="file" name="file" />
+			<input id="uploader" type="file" name="file" />
 			<input class="btn btn-primary" upload-submit="uploadComplete(content, completed)" type="submit" value="Upload" />
 		</form>
 		<trend-comparer class="comparer" habits="habits"></trend-comparer>

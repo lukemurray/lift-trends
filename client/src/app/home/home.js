@@ -15,6 +15,7 @@ angular.module( 'lt.home', [
     if (completed && content) {
       if (content.success) {
         $scope.habits = content.habits;
+        $('#uploader').val('');
       }
       else {
         alert('Upload failed: ' + content.msg);

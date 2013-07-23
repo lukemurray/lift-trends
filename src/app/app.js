@@ -1,8 +1,7 @@
 angular.module( 'liftTrend', [
   'templates-app',
   'templates-common',
-  'lt.home',
-  'lt.about'
+  'lt.home'
 ])
 
 .config(function($routeProvider) {

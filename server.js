@@ -7,13 +7,13 @@ var staticMiddleware;
 var buildDir;
 
 app.configure('development', function(){
-	buildDir = '/client/build';
+	buildDir = '/build';
 	staticMiddleware = express.static(__dirname + buildDir);
 	console.log('Configured server for DEV mode');
 });
 
 app.configure('production', function() {
-	buildDir = '/client/bin';
+	buildDir = '/bin';
 	staticMiddleware = express.static(__dirname + buildDir);
 	console.log('Configured server for PROD mode');
 });

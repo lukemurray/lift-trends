@@ -1,11 +1,11 @@
 {
   "author": "Luke Murray",
-  "name": "LiftTrends",
+  "name": "lift-trends",
   "version": "0.2.1",
-  "homepage": "",
+  "homepage": "http://lift-trends.herokuapp.com/",
   "licenses": {
     "type": "MIT",
-    "url": ""
+    "url": "https://github.com/lukemurray/lift-trends/blob/master/LICENSE"
   },
   "bugs": "",
   "repository": {

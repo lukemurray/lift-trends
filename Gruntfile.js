@@ -552,4 +552,18 @@ module.exports = function ( grunt ) {
     });
   });
 
+  
+  grunt.registerTask('deploy-to-heroku', function() {
+    var exec = require('child_process').exec;
+    var done = this.async();
+    exec('git push heroku master', function(err) {
+      if (err) {
+        throw err;
+      }
+      done();
+    });
+  });
+
+  grunt.registerTask('deploy', ['default', 'bump', 'deploy-to-heroku']);
+
 };

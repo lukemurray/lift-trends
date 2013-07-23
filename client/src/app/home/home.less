@@ -17,12 +17,21 @@
 	
 	padding-top: @padding;
 	padding-bottom: @padding;
-	margin-bottom: 30px;
 	color: @color-on-hero;
 	height: 222px;
 
 	h1 {
 		color: @color-on-hero;
+
+		i {
+			font-size: 20px;
+		}
+
+		a {
+			font-size: 14px;
+			line-height: 41px;
+			vertical-align: middle;
+		}
 	}
 
 	h2 {
@@ -31,5 +40,31 @@
 
 	h3 {
 		color: lighten(@color-on-hero, 15%);
+	}
+}
+@border-color: rgb(180,180,190);
+.upload-container {
+	margin-top: -5px;
+	text-align: center;
+	padding-left: auto;
+	padding-right: auto;
+	padding-top: 5px;
+	padding-bottom: 20px;
+	margin-bottom: 30px;
+	background-color: rgb(244,244,244);
+	//border-top: solid 1px @border-color;
+	border-bottom: solid 1px @border-color;
+
+	h3 {
+		color: lighten(@color-on-hero, 15%);
+	}
+
+	form {
+		margin-top: 15px;
+		margin-bottom: 5px;
+	}
+
+	.help {
+		font-size: 22px;
 	}
 }

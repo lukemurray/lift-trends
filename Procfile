@@ -1,1 +1,1 @@
-web: cd client ; npm install ; ./node_modules/.bin/grunt ; cd .. ; node server.js
+web: node server.js

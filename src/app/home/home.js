@@ -7,9 +7,25 @@ angular.module( 'lt.home', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope, $http ) {
+.controller( 'HomeCtrl', function HomeController( $scope, $http, $timeout ) {
 
   $scope.habits = [];
+  $scope.dialogOpts = {
+    backdropFade: true,
+    dialogFade:true
+  };
+
+  $scope.showExportInfo = function () {
+    $scope.whyInfo = false;
+    $scope.exportInfo = !$scope.exportInfo;
+    $scope.info = $scope.exportInfo;
+  };
+
+  $scope.showWhyInfo = function() {
+    $scope.exportInfo = false;
+    $scope.whyInfo = !$scope.whyInfo;
+    $scope.info = $scope.whyInfo;
+  };
 
   $scope.uploadComplete = function(content, completed) {
     if (completed && content) {

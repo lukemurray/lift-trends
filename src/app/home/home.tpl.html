@@ -11,12 +11,35 @@
 			<input id="uploader" type="file" name="file" />
 			<input class="btn btn-primary pad-left" upload-submit="uploadComplete(content, completed)" type="submit" value="Upload" />
 		</form>
-		<a class="help" href="javascript:;" ng-click="showExportInfo()">How<i class="icon-question"></i></a>
+		<button class="btn-link help" ng-click="showExportInfo()">How<i class="icon-question"></i></button>
 		&nbsp;&nbsp;&nbsp;
-		<a class="help" href="javascript:;" ng-click="showExportInfo()">Why<i class="icon-question"></i></a>
+		<button class="btn-link help" ng-click="showWhyInfo()">Why<i class="icon-question"></i></button>
+		
+		<div class="modal" ng-show="info">
+			<div class="center" ng-show="exportInfo">
+				<ol>
+					<li>Log into your Lift.do account <a href="http://lift.do">here</a></li>
+					<li>Click the cog at the top right</li>
+					<li>Click "Settings"</li>
+					<li>Scroll down to "Export"</li>
+					<li>Click the "Export" button</li>
+					<li>Come back here to upload your CSV</li>
+				</ol>
+				<span class="note">Nothing is kept on the server. Click why above to find out more.</span>
+			</div>
+
+			<div class="center" ng-show="whyInfo">
+				<p>Simply, I wanted to see if there were any correlations between my 'habits'. This is because my partner and I use Lift to track a range of things like certain pain or what types of food we ate.</p>
+				<strong>Why Upload?</strong>
+				<p>Currently at 24 July 2013, Lift.do does not provide an API of any kind. Or at least not that I could find. They do however provide the ability to export your habits and check-ins.</p>
+				<p>I <strong>do not</strong> store or keep any of your habit information. After the file is uploaded it is transferred back to your browser in another format and removed from the server. See <a href="https://github.com/lukemurray/lift-trends/blob/master/server.js">the server.js code</a> for more information.</p>
+			</div>
+		</div>
 	</div>
 	<div class="container">
 		<trend-comparer class="comparer" habits="habits"></trend-comparer>
+
+		<div class="footer">Made by Luke Murray. Check out the <a href="https://github.com/lukemurray/lift-trends"><i class="icon-github"></i> source</a>. Follow me on <a href="http://twitter.com/lukedmurray"><i class="icon-twitter"></i> Twitter</a>.</div>
 	</div>
 </div>
 

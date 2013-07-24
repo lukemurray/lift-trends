@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html ng-app="liftTrend" ng-controller="AppCtrl">
   <head>
-    <title>Lift Trend</title>
+    <title>Lift Trends</title>
 
     <!-- social media tags -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@lukedmurray">
-    <meta name="twitter:title" content="LiftTrend">
+    <meta name="twitter:title" content="LiftTrends">
     <meta name="twitter:description" content="Compare your Lift.do trends to find patterns">
     <meta name="twitter:creator" content="@lukedmurray">
 
@@ -22,6 +22,9 @@
 
     <!-- compiled JS --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
+
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
   </head>
   <body>
     <div ng-view></div>

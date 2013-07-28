@@ -1,8 +1,11 @@
 <div class="row">
 	<div class="col-3">
 		<h3>Habits</h3>
-		<div ng-repeat="habit in habits">
-			<div class="legend" style="background-color: {{ getBackground(0.5, $index) }}; border: solid 1px {{ getBackground(1, $index) }};"></div>
+		<label class="checkbox no-bold">
+			<input type="checkbox" ng-click="activeHabitsOnly = $event.target.checked" checked /> Hide habits with no activity for time period
+		</label>
+		<div ng-repeat="habit in habits | filter:filterHabits" ng-animate="'fade'">
+			<div class="legend" style="background-color: {{ habit.colorRgba }}; border: solid 1px {{ habit.colorRgb }};"></div>
 			<label class="checkbox habitLabel">
 				<input type="checkbox" ng-click="selectHabit($event, habit, $index)" id="{{ habit.name }}" /> {{ habit.name }}
 			</label>

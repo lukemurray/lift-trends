@@ -83,6 +83,40 @@ h2 {
 	height: 100%;
 }
 
+.no-bold {
+	font-weight: normal;
+}
+
+@halfSec: 0.5s;
+.fade-enter, .fade-leave, .fade-move {
+	-webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) @halfSec;
+	-moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) @halfSec;
+	-o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) @halfSec;
+	transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) @halfSec;
+}
+
+.fade-leave {
+	opacity:1;
+}
+.fade-leave.fade-leave-active {
+	opacity:0;
+}
+
+.fade-enter {
+	opacity:0;
+}
+.fade-enter.fade-enter-active {
+	opacity:1;
+}
+
+.fade-move {
+	opacity:0.5;
+}
+.fade-move.fade-move-active {
+	opacity:1;
+}
+
+
 /**
  * Inlcude any LESS for different pages / controls etc from our app
  */

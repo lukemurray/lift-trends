@@ -36,6 +36,7 @@ angular.module('lt.trendComparer', [
 				{ name: '1 year', id: 6, groupMonth: true, value: 12 }
 			];
 			$scope.goBack = $scope.goBackOptions[1];
+			$scope.activeHabitsOnly = true;
 			$scope.chartOptions = {
 				scaleOverlay: true,
 				scaleOverride: true,
@@ -64,12 +65,10 @@ angular.module('lt.trendComparer', [
 						}
 					});
 				});
-				var rgba = habit.color.replace('o', '0.5');
-				var rgb = habit.color.replace('o', '1');
 
 				$scope.datasets.push({
-					fillColor : rgba,
-					strokeColor : rgb,
+					fillColor : habit.colorRgba,
+					strokeColor : habit.colorRgb,
 					pointrgb : rgb,
 					pointStrokeColor : "#fff",
 					data : data,
@@ -127,13 +126,23 @@ angular.module('lt.trendComparer', [
 				});
 			};
 
-			$scope.getBackground = function(alpha, $index) {
-				return uniqueColors[$index % uniqueColors.length].replace('o', alpha);
+			$scope.filterHabits = function(habit) {
+				// dates not comparing
+				if ($scope.activeHabitsOnly) {
+					for (var i = habit.checkIns.length - 1; i >= 0; i--) {
+						var checkin = habit.checkIns[i];
+						var cDate = new Date(checkin.date);
+						if (cDate >= datesShowing[0] && cDate <= datesShowing[datesShowing.length-1]) {
+							return true;
+						}
+					}
+					return false;
+				}
+				return true;
 			};
 
 			$scope.selectHabit = function($event, habit, $index) {
 				var checkbox = $event.target;
-				habit.color = uniqueColors[$index % uniqueColors.length];
 				habit.selected = checkbox.checked;
 
 				if (checkbox.checked) {
@@ -151,10 +160,19 @@ angular.module('lt.trendComparer', [
 				}
 			};
 
+			$scope.setColors = function() {
+				angular.forEach($scope.habits, function(habit, index) {
+					habit.colorRgb = uniqueColors[index % uniqueColors.length].replace('o', '1');
+					habit.colorRgba = uniqueColors[index % uniqueColors.length].replace('o', '0.5');
+				});
+			};
+
 			$scope.$watch('habits', function() {
 				$scope.datasets = [];
+				$scope.setColors();
 			});
 
+			$scope.setColors();
 			$scope.setupRange();
 		},
 		link: function(scope, element, attrs) {

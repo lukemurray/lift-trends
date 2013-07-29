@@ -1,5 +1,5 @@
 /**
- * lift-trends - v0.2.4 - 2013-07-29
+ * lift-trends - v0.2.5 - 2013-07-29
  * http://lift-trends.herokuapp.com/
  *
  * Copyright (c) 2013 Luke Murray

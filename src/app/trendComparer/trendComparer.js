@@ -69,7 +69,7 @@ angular.module('lt.trendComparer', [
 				$scope.datasets.push({
 					fillColor : habit.colorRgba,
 					strokeColor : habit.colorRgb,
-					pointrgb : rgb,
+					pointrgb : habit.colorRgba,
 					pointStrokeColor : "#fff",
 					data : data,
 					habitName: habit.name

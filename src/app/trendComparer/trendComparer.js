@@ -33,7 +33,10 @@ angular.module('lt.trendComparer', [
 				{ name: '15 weeks', id: 2, groupMonth: false, value: 15 },
 				{ name: '6 months', id: 4, groupMonth: true, value: 6 },
 				{ name: '9 months', id: 5, groupMonth: true, value: 9 },
-				{ name: '1 year', id: 6, groupMonth: true, value: 12 }
+				{ name: '1 year', id: 6, groupMonth: true, value: 12 },
+				{ name: '2 years', id: 6, groupMonth: true, value: 24 },
+				{ name: '3 years', id: 6, groupMonth: true, value: 36 },
+				{ name: '5 years', id: 6, groupMonth: true, value: 60 }
 			];
 			$scope.goBack = $scope.goBackOptions[1];
 			$scope.activeHabitsOnly = true;
